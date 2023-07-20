@@ -1,0 +1,90 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Page {
+  total: Int!
+  pageNum: Int!
+  pageSize: Int!
+}
+
+type Result {
+  code: Int!
+  message: String
+  data: String
+}
+
+type ParameterOutPut {
+  """id"""
+  id: Float!
+
+  """参数键"""
+  key: String!
+
+  """参数值"""
+  value: String!
+
+  """参数名称"""
+  name: String!
+
+  """描述"""
+  describe: String!
+
+  """状态"""
+  state: Boolean!
+
+  """内置"""
+  readonly: Boolean!
+}
+
+type ParameterResult {
+  code: Int!
+  message: String!
+  data: ParameterOutPut
+}
+
+type ParameterResults {
+  code: Int!
+  message: String!
+  data: [ParameterOutPut!]
+  page: Page
+}
+
+type Query {
+  """查询所有参数"""
+  findAll: ParameterResults!
+
+  """查询单个参数"""
+  findOne(id: Float!): ParameterResult!
+}
+
+type Mutation {
+  """新建参数"""
+  createParameter(parameterInput: ParameterInput!): ParameterResult!
+
+  """修改参数"""
+  updateParameter(id: Float!, parameterInput: ParameterInput!): Result!
+
+  """删除参数"""
+  removeParameter(id: Float!): Result!
+}
+
+input ParameterInput {
+  """状态"""
+  state: Boolean!
+
+  """内置值"""
+  readonly: Boolean!
+
+  """参数键"""
+  key: String!
+
+  """参数名称"""
+  name: String!
+
+  """参数值"""
+  value: String!
+
+  """描述"""
+  describe: String!
+}
