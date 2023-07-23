@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { OSSModule } from './modules/oss/oss.module';
 import { SystemModule } from './modules/system/system.module';
 
 @Module({
@@ -23,6 +24,7 @@ import { SystemModule } from './modules/system/system.module';
             autoSchemaFile: './schema.gql',
         }),
         SystemModule,
+        OSSModule,
     ],
     controllers: [],
     providers: [],

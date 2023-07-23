@@ -2,6 +2,26 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type OSSType {
+  """过期时间"""
+  expire: String!
+
+  """策略"""
+  policy: String!
+
+  """签名"""
+  signature: String!
+
+  """key"""
+  accessId: String!
+
+  """host"""
+  host: String!
+
+  """文件夹"""
+  dir: String!
+}
+
 type Page {
   total: Int!
   pageNum: Int!
@@ -64,6 +84,9 @@ type Query {
 
   """查询单个参数"""
   findParameter(id: Float!): ParameterResult!
+
+  """获取 oss 相关信息"""
+  getOSSInfo: OSSType!
 }
 
 input ParameterQueryDto {
@@ -86,6 +109,7 @@ type Mutation {
 
   """修改参数"""
   updateParameter(id: Float!, parameterInput: ParameterInput!): Result!
+  commitParameterInfo(params: ParameterInput!, id: Float): Result!
 
   """删除参数"""
   removeParameter(id: Float!): Result!

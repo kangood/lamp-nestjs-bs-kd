@@ -41,6 +41,9 @@ dependencies:
   '@nestjs/typeorm':
     specifier: ^9.0.1
     version: 9.0.1(@nestjs/common@9.0.11)(@nestjs/core@9.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)(typeorm@0.3.10)
+  '@types/ali-oss':
+    specifier: ^6.16.8
+    version: 6.16.8
   ali-oss:
     specifier: ^6.17.1
     version: 6.17.1
@@ -1761,6 +1764,10 @@ packages:
     resolution: {integrity: sha512-jOdnI/3qTpHABjM5cx1Hc0sKsPoYCp+DP/GJRGtDlPd7fiV9oXGGIcjW/ZOxLIvjGz8MA+uMZI9metHlgqbgwQ==}
     dependencies:
       '@types/node': 16.0.0
+    dev: false
+
+  /@types/ali-oss@6.16.8:
+    resolution: {integrity: sha512-OIevBEn5NONhV8pOoPjQ/zZlWgi08+zFaAS7t8wbWm2UIVGJD7nU2u+GnQpjkKcsgOBADMvmr380x/zSx2ythw==}
     dev: false
 
   /@types/babel__core@7.20.1:

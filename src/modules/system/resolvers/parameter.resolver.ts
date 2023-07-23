@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 
-import { CREATE_ERROR, SUCCESS, UPDATE_ERROR } from '@/common/constants/code';
+import { CREATE_ERROR, NOT_EXIST_ERROR, SUCCESS, UPDATE_ERROR } from '@/common/constants/code';
 
 import { Result } from '@/common/dto/result.type';
 
@@ -62,6 +62,44 @@ export class ParameterResolver {
         return {
             code: UPDATE_ERROR,
             message: '修改失败',
+        };
+    }
+
+    @Mutation(() => Result)
+    async commitParameterInfo(
+        @Args('params') params: ParameterInput,
+        @Args('id', { nullable: true }) id: number,
+    ) {
+        if (!id) {
+            const res = await this.parameterService.create(params);
+            if (res) {
+                return {
+                    code: SUCCESS,
+                    message: '创建成功',
+                };
+            }
+            return {
+                code: CREATE_ERROR,
+                message: '创建失败',
+            };
+        }
+        const parameter = await this.parameterService.findOne(id);
+        if (parameter) {
+            const res = await this.parameterService.update(parameter.id, params);
+            if (res) {
+                return {
+                    code: SUCCESS,
+                    message: '更新成功',
+                };
+            }
+            return {
+                code: UPDATE_ERROR,
+                message: '更新失败',
+            };
+        }
+        return {
+            code: NOT_EXIST_ERROR,
+            message: '参数不存在',
         };
     }
 

@@ -34,6 +34,7 @@
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
+    "@types/ali-oss": "^6.16.8",
     "ali-oss": "^6.17.1",
     "apollo-server-express": "^3.10.3",
     "axios": "^1.4.0",
