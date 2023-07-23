@@ -35,7 +35,15 @@ type ParameterOutPut {
 
   """内置"""
   readonly: Boolean!
+
+  """创建时间"""
+  createdAt: DateTime!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type ParameterResult {
   code: Int!
@@ -52,10 +60,24 @@ type ParameterResults {
 
 type Query {
   """查询所有参数"""
-  findAll: ParameterResults!
+  findParameterList(parameterQueryDto: ParameterQueryDto!): ParameterResults!
 
   """查询单个参数"""
-  findOne(id: Float!): ParameterResult!
+  findParameter(id: Float!): ParameterResult!
+}
+
+input ParameterQueryDto {
+  pageNum: Float!
+  pageSize: Float!
+
+  """参数键"""
+  key: String!
+
+  """参数名称"""
+  name: String!
+
+  """参数值"""
+  value: String!
 }
 
 type Mutation {

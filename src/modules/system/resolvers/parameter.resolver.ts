@@ -4,7 +4,12 @@ import { CREATE_ERROR, SUCCESS, UPDATE_ERROR } from '@/common/constants/code';
 
 import { Result } from '@/common/dto/result.type';
 
-import { ParameterInput, ParameterResult, ParameterResults } from '../dtos/parameter.dto';
+import {
+    ParameterInput,
+    ParameterQueryDto,
+    ParameterResult,
+    ParameterResults,
+} from '../dtos/parameter.dto';
 import { ParameterService } from '../services/parameter.service';
 
 @Resolver()
@@ -12,17 +17,12 @@ export class ParameterResolver {
     constructor(private readonly parameterService: ParameterService) {}
 
     @Query(() => ParameterResults, { description: '查询所有参数' })
-    async findAll() {
-        const results = await this.parameterService.findAll();
-        return {
-            code: SUCCESS,
-            data: results,
-            message: '获取成功',
-        };
+    async findParameterList(@Args('parameterQueryDto') parameterQueryDto: ParameterQueryDto) {
+        return this.parameterService.findParameterList(parameterQueryDto);
     }
 
     @Query(() => ParameterResult, { description: '查询单个参数' })
-    async findOne(@Args('id') id: number) {
+    async findParameter(@Args('id') id: number) {
         const result = await this.parameterService.findOne(id);
         return {
             code: SUCCESS,

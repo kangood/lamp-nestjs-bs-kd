@@ -1,6 +1,7 @@
 import { InputType, Field, ObjectType } from '@nestjs/graphql';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
+import { PageInput } from '@/common/dto/page.input';
 import { createResult, createResults } from '@/common/dto/result.type';
 
 @InputType()
@@ -31,6 +32,21 @@ export class ParameterInput {
     describe?: string;
 }
 
+@InputType()
+export class ParameterQueryDto extends PageInput {
+    @Field({ description: '参数键' })
+    @IsOptional()
+    key?: string;
+
+    @Field({ description: '参数名称' })
+    @IsOptional()
+    name?: string;
+
+    @Field({ description: '参数值' })
+    @IsOptional()
+    value?: string;
+}
+
 @ObjectType()
 export class ParameterOutPut {
     @Field({ description: 'id' })
@@ -53,6 +69,9 @@ export class ParameterOutPut {
 
     @Field({ description: '内置' })
     readonly: boolean | null;
+
+    @Field({ description: '创建时间' })
+    createdAt: Date | null;
 }
 
 @ObjectType()

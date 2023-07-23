@@ -1,6 +1,7 @@
 import { Column, Entity, Index } from 'typeorm';
 
 import { CommonEntity } from '@/common/entities/common.entity';
+import { BoolBitTransformer } from '@/shared/utils';
 
 @Index('uk_key', ['key'], { unique: true })
 @Entity('c_parameter', { schema: 'lamp_generator' })
@@ -32,6 +33,7 @@ export class ParameterEntity extends CommonEntity {
         nullable: true,
         comment: '状态',
         default: () => '1',
+        transformer: new BoolBitTransformer(),
     })
     state: boolean | null;
 
@@ -40,6 +42,7 @@ export class ParameterEntity extends CommonEntity {
         nullable: true,
         comment: '内置',
         default: () => '0',
+        transformer: new BoolBitTransformer(),
     })
     readonly: boolean | null;
 }
